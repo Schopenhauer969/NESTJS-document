@@ -1,412 +1,837 @@
-# NestJS Complete Guide (English + Khmer) 🐈
-## មគ្គុទ្ទេសក៍ពេញលេញ NestJS (ភាសាអង់គ្លេស + ខ្មែរ)
+# NestJS — Beginner to Advanced Guide
 
-> A complete beginner-to-advanced guide to NestJS — a progressive Node.js framework for building efficient, reliable, and scalable server-side applications.
-> មគ្គុទ្ទេសក៍ពេញលេញពីកម្រិតដំបូងដល់កម្រិតខ្ពស់សម្រាប់ NestJS — ជា framework Node.js ដែលប្រើសម្រាប់សាងសង់ server-side applications ប្រកបដោយប្រសិទ្ធភាព ជឿទុកចិត្តបាន និងអាចពង្រីកបាន។
-
-![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+> A clean, practical, beginner-to-advanced NestJS learning guide with complete examples.
+> **English + Khmer explanations 🇬🇧 🇰🇭**
 
 ---
 
-## 📚 Table of Contents / មាតិកា
+## 📚 Table of Contents
 
-1. [Introduction / សេចក្តីផ្តើម](#1-introduction--សេចក្តីផ្តើម)
-2. [Prerequisites / លក្ខខណ្ឌតម្រូវ](#2-prerequisites--លក្ខខណ្ឌតម្រូវ)
-3. [Installation & Setup / ការដំឡើង](#3-installation--setup--ការដំឡើង)
-4. [Project Structure / រចនាសម្ព័ន្ធគម្រោង](#4-project-structure--រចនាសម្ព័ន្ធគម្រោង)
-5. [Modules / ម៉ូឌុល](#5-modules--ម៉ូឌុល)
-6. [Controllers / កុងត្រូលឡឺ](#6-controllers--កុងត្រូលឡឺ)
-7. [Providers & Services / សេវាកម្ម](#7-providers--services--សេវាកម្ម)
-8. [DTOs & Validation](#8-dtos--validation)
-9. [Pipes](#9-pipes)
-10. [Middleware](#10-middleware)
-11. [Guards & Authentication (JWT)](#11-guards--authentication-jwt)
-12. [Interceptors](#12-interceptors)
-13. [Exception Filters](#13-exception-filters)
-14. [Custom Decorators](#14-custom-decorators)
-15. [Configuration (.env)](#15-configuration-env)
-16. [Database with TypeORM (PostgreSQL)](#16-database-with-typeorm-postgresql)
-17. [Relationships (One-to-Many, Many-to-Many)](#17-relationships-one-to-many-many-to-many)
-18. [Swagger / OpenAPI Documentation](#18-swagger--openapi-documentation)
-19. [Testing (Jest)](#19-testing-jest)
-20. [WebSockets Gateway](#20-websockets-gateway)
-21. [Microservices (Overview)](#21-microservices-overview)
-22. [Task Scheduling & Queues](#22-task-scheduling--queues)
-23. [Deployment (Docker)](#23-deployment-docker)
-24. [Best Practices](#24-best-practices)
-25. [Full Example: Task Manager API](#25-full-example-task-manager-api)
-
----
-
-## 1. Introduction / សេចក្តីផ្តើម
-
-**English:** NestJS is a framework for building efficient, scalable Node.js server-side applications. It uses progressive JavaScript, is built with and fully supports **TypeScript**, and combines elements of **OOP** (Object-Oriented Programming), **FP** (Functional Programming), and **FRP** (Functional Reactive Programming). Under the hood, NestJS uses robust HTTP server frameworks like **Express** (default) or **Fastify**.
-
-**ខ្មែរ:** NestJS គឺជា framework មួយសម្រាប់សាងសង់ server-side applications របស់ Node.js ប្រកបដោយប្រសិទ្ធភាព និងអាចពង្រីកបាន។ វាប្រើ TypeScript ពេញលេញ ហើយរួមបញ្ចូលគំនិតនៃ OOP, FP និង FRP ចូលគ្នា។ ក្នុងខាងក្នុង NestJS ប្រើ HTTP server framework ដូចជា **Express** (លំនាំដើម) ឬ **Fastify**។
-
-### Why NestJS? / ហេតុអ្វីជ្រើសរើស NestJS?
-
-- **Architecture (ស្ថាបត្យកម្ម):** Inspired by Angular — organized with Modules, Controllers, Providers.
-- **TypeScript first:** Strong typing reduces bugs / កាត់បន្ថយកំហុសដោយសារ type checking រឹងមាំ។
-- **Dependency Injection (DI):** Built-in DI container makes code testable and maintainable.
-- **Scalable (អាចពង្រីកបាន):** Great for microservices, GraphQL, WebSockets, REST APIs.
-- **Ecosystem:** Official packages for TypeORM, Mongoose, Passport, Swagger, GraphQL, and more.
-
----
-
-## 2. Prerequisites / លក្ខខណ្ឌតម្រូវ
-
-**English:** Before starting, you should know:
-- Basic **JavaScript / TypeScript**
-- Basic **Node.js** and npm
-- Basic understanding of **REST APIs**
-- Basic **OOP** concepts (classes, decorators)
-
-**ខ្មែរ:** មុននឹងចាប់ផ្តើម អ្នកគួរតែស្គាល់៖
-- **JavaScript / TypeScript** កម្រិតមូលដ្ឋាន
-- **Node.js** និង npm
-- គោលការណ៍ **REST API**
-- គោលការណ៍ **OOP** (class, decorator)
-
-### Required Tools / ឧបករណ៍ត្រូវការ
-
-| Tool | Version | Check Command |
-|------|---------|----------------|
-| Node.js | >= 18.x | `node -v` |
-| npm | >= 9.x | `npm -v` |
-| NestJS CLI | latest | `nest --version` |
+* [1. What is NestJS?](#1-what-is-nestjs)
+* [2. Prerequisites](#2-prerequisites)
+* [3. Installation](#3-installation)
+* [4. Create Your First Project](#4-create-your-first-project)
+* [5. Project Structure](#5-project-structure)
+* [6. Hello World](#6-hello-world)
+* [7. Modules](#7-modules)
+* [8. Controllers](#8-controllers)
+* [9. Providers and Services](#9-providers-and-services)
+* [10. Dependency Injection](#10-dependency-injection)
+* [11. Route Parameters](#11-route-parameters)
+* [12. Query Parameters](#12-query-parameters)
+* [13. Request Body](#13-request-body)
+* [14. DTOs](#14-dtos)
+* [15. Validation](#15-validation)
+* [16. Pipes](#16-pipes)
+* [17. Exception Handling](#17-exception-handling)
+* [18. Middleware](#18-middleware)
+* [19. Guards](#19-guards)
+* [20. Interceptors](#20-interceptors)
+* [21. Custom Decorators](#21-custom-decorators)
+* [22. Configuration and Environment Variables](#22-configuration-and-environment-variables)
+* [23. CRUD API](#23-crud-api)
+* [24. Database with TypeORM](#24-database-with-typeorm)
+* [25. Database with Prisma](#25-database-with-prisma)
+* [26. Authentication with JWT](#26-authentication-with-jwt)
+* [27. Authorization and Roles](#27-authorization-and-roles)
+* [28. Password Hashing](#28-password-hashing)
+* [29. Swagger / OpenAPI](#29-swagger--openapi)
+* [30. API Versioning](#30-api-versioning)
+* [31. CORS](#31-cors)
+* [32. Helmet](#32-helmet)
+* [33. Rate Limiting](#33-rate-limiting)
+* [34. File Upload](#34-file-upload)
+* [35. Logging](#35-logging)
+* [36. Testing](#36-testing)
+* [37. E2E Testing](#37-e2e-testing)
+* [38. Caching](#38-caching)
+* [39. Events](#39-events)
+* [40. Queues](#40-queues)
+* [41. WebSockets](#41-websockets)
+* [42. GraphQL](#42-graphql)
+* [43. Microservices](#43-microservices)
+* [44. Health Checks](#44-health-checks)
+* [45. Graceful Shutdown](#45-graceful-shutdown)
+* [46. Production Structure](#46-production-structure)
+* [47. Clean Architecture](#47-clean-architecture)
+* [48. Best Practices](#48-best-practices)
+* [49. Common Mistakes](#49-common-mistakes)
+* [50. Production Checklist](#50-production-checklist)
 
 ---
 
-## 3. Installation & Setup / ការដំឡើង
+# 1. What is NestJS?
 
-**English:** Install the NestJS CLI globally, then generate a new project.
-**ខ្មែរ:** ដំឡើង NestJS CLI ជា global ជាមុនសិន បន្ទាប់មកបង្កើតគម្រោងថ្មី។
+## English
+
+**NestJS** is a Node.js framework for building scalable server-side applications.
+
+It is built with TypeScript and provides an architecture based around:
+
+* Modules
+* Controllers
+* Providers
+* Dependency Injection
+* Pipes
+* Guards
+* Interceptors
+* Middleware
+* Exception Filters
+* Decorators
+
+NestJS uses a modular architecture that helps applications remain maintainable as they grow.
+
+## ខ្មែរ
+
+**NestJS** គឺជា Framework សម្រាប់ Node.js ដែលប្រើសម្រាប់បង្កើត Backend និង API ដែលមានរចនាសម្ព័ន្ធច្បាស់លាស់ និងងាយស្រួលពង្រីក។
+
+វាមានគោលគំនិតសំខាន់ៗដូចជា៖
+
+* `Module`
+* `Controller`
+* `Service / Provider`
+* Dependency Injection
+* Pipe
+* Guard
+* Interceptor
+* Middleware
+* Exception Filter
+* Decorator
+
+### Basic architecture
+
+```text
+Client
+   │
+   ▼
+Controller
+   │
+   ▼
+Service
+   │
+   ▼
+Repository / Database
+```
+
+---
+
+# 2. Prerequisites
+
+You should know:
+
+* JavaScript
+* TypeScript
+* Node.js
+* npm
+* HTTP
+* REST API
+* JSON
+* Basic SQL
+
+Current NestJS documentation lists Node.js **20.19+** as a runtime requirement.
+
+## Recommended
+
+```text
+Node.js 20+
+TypeScript
+npm
+VS Code
+Postman / Insomnia
+Git
+```
+
+---
+
+# 3. Installation
+
+## Install Nest CLI
 
 ```bash
-# Install NestJS CLI globally
 npm install -g @nestjs/cli
+```
 
-# Create a new project
-nest new my-nest-app
+Or use the CLI without global installation:
 
-# Choose package manager: npm / yarn / pnpm
-# ជ្រើសរើស package manager: npm / yarn / pnpm
+```bash
+npx @nestjs/cli@latest
+```
 
-# Navigate into the project
-cd my-nest-app
+Check:
 
-# Run the development server
+```bash
+nest --version
+```
+
+---
+
+# 4. Create Your First Project
+
+Create a project:
+
+```bash
+nest new nest-api
+```
+
+Enter the project:
+
+```bash
+cd nest-api
+```
+
+Start development server:
+
+```bash
 npm run start:dev
 ```
 
-**English:** Your app now runs at `http://localhost:3000`.
-**ខ្មែរ:** កម្មវិធីរបស់អ្នកកំពុងដំណើរការនៅ `http://localhost:3000` ។
+Open:
 
-### Useful CLI Commands / ពាក្យបញ្ជាមានប្រយោជន៍
-
-```bash
-nest generate module users      # or: nest g mo users
-nest generate controller users  # or: nest g co users
-nest generate service users     # or: nest g s users
-nest generate resource users    # generates full CRUD module (REST/GraphQL/WS)
+```text
+http://localhost:3000
 ```
+
+## English
+
+`start:dev` watches your source files and reloads the application when files change.
+
+## ខ្មែរ
+
+`npm run start:dev` នឹងធ្វើឱ្យ Server ដំណើរការ និង Reload ដោយស្វ័យប្រវត្តិ នៅពេលយើងកែ Code។
 
 ---
 
-## 4. Project Structure / រចនាសម្ព័ន្ធគម្រោង
+# 5. Project Structure
 
-**English:** Default project structure after `nest new`:
-**ខ្មែរ:** រចនាសម្ព័ន្ធគម្រោងលំនាំដើមបន្ទាប់ពី `nest new`:
+A basic NestJS project looks like:
 
-```
-my-nest-app/
+```text
+nest-api/
 ├── src/
-│   ├── app.controller.ts       # Root controller
-│   ├── app.controller.spec.ts  # Unit test for controller
-│   ├── app.module.ts           # Root module
-│   ├── app.service.ts          # Root service
-│   └── main.ts                 # Entry point (bootstrap)
+│   ├── app.controller.ts
+│   ├── app.service.ts
+│   ├── app.module.ts
+│   └── main.ts
+│
 ├── test/
-│   └── app.e2e-spec.ts         # End-to-end tests
-├── nest-cli.json
 ├── package.json
 ├── tsconfig.json
-└── tsconfig.build.json
+└── nest-cli.json
 ```
 
-**English:** As the app grows, organize by **feature module** (e.g., `users/`, `auth/`, `products/`) — each with its own controller, service, module, DTOs, and entities.
-**ខ្មែរ:** នៅពេលកម្មវិធីធំឡើង គួរតែរៀបចំតាម **feature module** (ឧ. `users/`, `auth/`, `products/`) — នីមួយៗមាន controller, service, module, DTO និង entity ផ្ទាល់ខ្លួន។
+A larger application can use:
 
-```
+```text
 src/
-├── users/
-│   ├── dto/
-│   │   ├── create-user.dto.ts
-│   │   └── update-user.dto.ts
-│   ├── entities/
-│   │   └── user.entity.ts
-│   ├── users.controller.ts
-│   ├── users.module.ts
-│   └── users.service.ts
-├── auth/
+├── main.ts
 ├── app.module.ts
-└── main.ts
+│
+├── common/
+│   ├── decorators/
+│   ├── filters/
+│   ├── guards/
+│   ├── interceptors/
+│   ├── middleware/
+│   └── pipes/
+│
+├── config/
+│
+├── auth/
+│   ├── auth.controller.ts
+│   ├── auth.service.ts
+│   ├── auth.module.ts
+│   ├── dto/
+│   └── guards/
+│
+├── users/
+│   ├── users.controller.ts
+│   ├── users.service.ts
+│   ├── users.module.ts
+│   ├── dto/
+│   └── entities/
+│
+└── products/
+    ├── products.controller.ts
+    ├── products.service.ts
+    ├── products.module.ts
+    ├── dto/
+    └── entities/
 ```
 
 ---
 
-## 5. Modules / ម៉ូឌុល
+# 6. Hello World
 
-**English:** A module is a class annotated with `@Module()`. It groups related controllers and providers together. Every NestJS app has at least one **root module** (`AppModule`).
+## `src/main.ts`
 
-**ខ្មែរ:** Module គឺជា class ដែលមាន decorator `@Module()`។ វារួមបញ្ចូល controller និង provider ដែលទាក់ទងគ្នា។ កម្មវិធី NestJS គ្រប់ដងតែងតែមាន **root module** យ៉ាងតិចមួយ (`AppModule`)។
-
-```typescript
-// src/users/users.module.ts
-import { Module } from '@nestjs/common';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
-
-@Module({
-  imports: [],                    // other modules this module depends on
-  controllers: [UsersController], // controllers belonging to this module
-  providers: [UsersService],      // services/providers registered in this module
-  exports: [UsersService],        // make UsersService available to other modules
-})
-export class UsersModule {}
-```
-
-```typescript
-// src/app.module.ts
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-
-@Module({
-  imports: [UsersModule],   // register feature modules here
-  controllers: [AppController],
-  providers: [AppService],
-})
-export class AppModule {}
-```
-
-**English:** `main.ts` bootstraps the root module:
-**ខ្មែរ:** `main.ts` ជាចំណុចចាប់ផ្តើម bootstrap `root module`:
-
-```typescript
-// src/main.ts
+```ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
-  console.log(`Application running on: ${await app.getUrl()}`);
+
+  await app.listen(process.env.PORT ?? 3000);
 }
+
 bootstrap();
 ```
 
+## `src/app.controller.ts`
+
+```ts
+import { Controller, Get } from '@nestjs/common';
+
+@Controller()
+export class AppController {
+  @Get()
+  getHello(): string {
+    return 'Hello World!';
+  }
+}
+```
+
+## `src/app.module.ts`
+
+```ts
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+
+@Module({
+  controllers: [AppController],
+})
+export class AppModule {}
+```
+
+Run:
+
+```bash
+npm run start:dev
+```
+
+Request:
+
+```http
+GET http://localhost:3000/
+```
+
+Response:
+
+```text
+Hello World!
+```
+
 ---
 
-## 6. Controllers / កុងត្រូលឡឺ
+# 7. Modules
 
-**English:** Controllers handle incoming HTTP requests and return responses. They are defined using `@Controller()` and route handlers use decorators like `@Get()`, `@Post()`, `@Put()`, `@Delete()`, `@Patch()`.
+## English
 
-**ខ្មែរ:** Controller ទទួលខុសត្រូវទទួល HTTP request ហើយបញ្ជូន response ត្រឡប់មកវិញ។ វាកំណត់ដោយ `@Controller()` ហើយ route handler ប្រើ decorator ដូចជា `@Get()`, `@Post()`, `@Put()`, `@Delete()`, `@Patch()`។
+A module organizes related functionality.
 
-```typescript
-// src/users/users.controller.ts
+## ខ្មែរ
+
+`Module` ប្រើសម្រាប់រៀបចំ Feature ដែលទាក់ទងគ្នា ឱ្យនៅជាក្រុម។
+
+Create:
+
+```bash
+nest generate module users
+```
+
+Short version:
+
+```bash
+nest g module users
+```
+
+Example:
+
+## `users/users.module.ts`
+
+```ts
+import { Module } from '@nestjs/common';
+
+@Module({})
+export class UsersModule {}
+```
+
+Import it into the application:
+
+```ts
+import { Module } from '@nestjs/common';
+import { UsersModule } from './users/users.module';
+
+@Module({
+  imports: [UsersModule],
+})
+export class AppModule {}
+```
+
+---
+
+# 8. Controllers
+
+Controllers receive HTTP requests and return responses.
+
+Create:
+
+```bash
+nest g controller users
+```
+
+Example:
+
+## `users.controller.ts`
+
+```ts
 import {
   Controller,
   Get,
-  Post,
-  Body,
-  Param,
-  Put,
-  Delete,
-  Query,
-  HttpCode,
-  HttpStatus,
-  ParseIntPipe,
 } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 
-@Controller('users') // base route: /users
+@Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
-
-  // GET /users?role=admin
   @Get()
-  findAll(@Query('role') role?: string) {
-    return this.usersService.findAll(role);
-  }
-
-  // GET /users/5
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(id);
-  }
-
-  // POST /users
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
-
-  // PUT /users/5
-  @Put(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    return this.usersService.update(id, updateUserDto);
-  }
-
-  // DELETE /users/5
-  @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.remove(id);
+  findAll() {
+    return [
+      {
+        id: 1,
+        name: 'Dara',
+      },
+      {
+        id: 2,
+        name: 'Sokha',
+      },
+    ];
   }
 }
 ```
 
-**English:** Key parameter decorators:
-**ខ្មែរ:** Decorator សំខាន់ៗសម្រាប់ parameter:
+Request:
 
-| Decorator | Purpose (EN) | ការប្រើប្រាស់ (KH) |
-|-----------|---------------|----------------------|
-| `@Body()` | Access request body | យក request body |
-| `@Param()` | Access route params | យក param ពី URL |
-| `@Query()` | Access query string | យក query string |
-| `@Req()` | Access raw Express request | យក raw request object |
-| `@Res()` | Access raw Express response | យក raw response object (use with care) |
-| `@Headers()` | Access request headers | យក headers |
+```http
+GET /users
+```
+
+Response:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Dara"
+  },
+  {
+    "id": 2,
+    "name": "Sokha"
+  }
+]
+```
+
+## HTTP methods
+
+```ts
+@Get()
+@Post()
+@Put()
+@Patch()
+@Delete()
+```
+
+Example:
+
+```ts
+@Controller('users')
+export class UsersController {
+  @Get()
+  findAll() {
+    return [];
+  }
+
+  @Post()
+  create() {
+    return {
+      message: 'User created',
+    };
+  }
+
+  @Put(':id')
+  update() {
+    return {
+      message: 'User updated',
+    };
+  }
+
+  @Delete(':id')
+  remove() {
+    return {
+      message: 'User deleted',
+    };
+  }
+}
+```
 
 ---
 
-## 7. Providers & Services / សេវាកម្ម
+# 9. Providers and Services
 
-**English:** Providers (usually services) contain business logic. They are marked with `@Injectable()` and injected into controllers or other providers via **Dependency Injection**.
+A service contains business logic.
 
-**ខ្មែរ:** Provider (ជាទូទៅហៅថា service) មាន business logic។ វាកំណត់ដោយ `@Injectable()` ហើយត្រូវបាន inject ចូល controller ឬ provider ផ្សេងទៀតតាមរយៈ **Dependency Injection**។
+Create:
 
-```typescript
-// src/users/users.service.ts
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+```bash
+nest g service users
+```
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
+## `users.service.ts`
+
+```ts
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
-  private users: User[] = [];
-  private idCounter = 1;
-
-  findAll(role?: string): User[] {
-    if (role) {
-      return this.users.filter((u) => u.role === role);
-    }
-    return this.users;
+  findAll() {
+    return [
+      {
+        id: 1,
+        name: 'Dara',
+      },
+      {
+        id: 2,
+        name: 'Sokha',
+      },
+    ];
   }
 
-  findOne(id: number): User {
-    const user = this.users.find((u) => u.id === id);
-    if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
-    }
-    return user;
-  }
-
-  create(dto: CreateUserDto): User {
-    const newUser: User = { id: this.idCounter++, ...dto, role: dto.role ?? 'user' };
-    this.users.push(newUser);
-    return newUser;
-  }
-
-  update(id: number, dto: UpdateUserDto): User {
-    const user = this.findOne(id);
-    Object.assign(user, dto);
-    return user;
-  }
-
-  remove(id: number): void {
-    const index = this.users.findIndex((u) => u.id === id);
-    if (index === -1) {
-      throw new NotFoundException(`User with ID ${id} not found`);
-    }
-    this.users.splice(index, 1);
+  findOne(id: number) {
+    return {
+      id,
+      name: 'Dara',
+    };
   }
 }
 ```
 
-**English:** NestJS's DI container automatically resolves `UsersService` when it sees it in the `UsersController` constructor — you never call `new UsersService()` manually.
+Controller:
 
-**ខ្មែរ:** DI container របស់ NestJS នឹង resolve `UsersService` ដោយស្វ័យប្រវត្តិនៅពេលឃើញនៅក្នុង constructor របស់ `UsersController` — អ្នកមិនចាំបាច់ហៅ `new UsersService()` ដោយផ្ទាល់ដៃទេ។
+```ts
+import {
+  Controller,
+  Get,
+  Param,
+} from '@nestjs/common';
+
+import { UsersService } from './users.service';
+
+@Controller('users')
+export class UsersController {
+  constructor(
+    private readonly usersService: UsersService,
+  ) {}
+
+  @Get()
+  findAll() {
+    return this.usersService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOne(Number(id));
+  }
+}
+```
+
+## Why use services?
+
+Bad:
+
+```ts
+@Controller('users')
+export class UsersController {
+  @Get()
+  findAll() {
+    // Too much business logic here
+  }
+}
+```
+
+Better:
+
+```text
+Controller
+   ↓
+Service
+   ↓
+Repository
+   ↓
+Database
+```
 
 ---
 
-## 8. DTOs & Validation
+# 10. Dependency Injection
 
-**English:** A **DTO** (Data Transfer Object) defines the shape of data sent over the network. Combined with `class-validator` and `class-transformer`, NestJS can automatically validate incoming request bodies.
+NestJS uses Dependency Injection.
 
-**ខ្មែរ:** **DTO** (Data Transfer Object) កំណត់រូបរាងទិន្នន័យដែលផ្ញើតាមបណ្តាញ។ ដោយរួមផ្សំជាមួយ `class-validator` និង `class-transformer` NestJS អាច validate request body ដោយស្វ័យប្រវត្តិ។
+Example:
+
+```ts
+@Injectable()
+export class UsersService {
+  findAll() {
+    return [];
+  }
+}
+```
+
+Inject it:
+
+```ts
+@Controller('users')
+export class UsersController {
+  constructor(
+    private readonly usersService: UsersService,
+  ) {}
+}
+```
+
+## ខ្មែរ
+
+Dependency Injection មានន័យថា NestJS ជួយបង្កើត និងផ្គត់ផ្គង់ object ដែល Class មួយត្រូវការ។
+
+យើងមិនចាំបាច់សរសេរ៖
+
+```ts
+const service = new UsersService();
+```
+
+ដោយខ្លួនឯងទេ។
+
+NestJS នឹងគ្រប់គ្រងវា។
+
+---
+
+# 11. Route Parameters
+
+Example:
+
+```http
+GET /users/10
+```
+
+Controller:
+
+```ts
+import {
+  Controller,
+  Get,
+  Param,
+} from '@nestjs/common';
+
+@Controller('users')
+export class UsersController {
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return {
+      id: Number(id),
+    };
+  }
+}
+```
+
+Request:
+
+```http
+GET /users/10
+```
+
+Response:
+
+```json
+{
+  "id": 10
+}
+```
+
+---
+
+# 12. Query Parameters
+
+Request:
+
+```http
+GET /users?page=1&limit=10
+```
+
+Code:
+
+```ts
+import {
+  Controller,
+  Get,
+  Query,
+} from '@nestjs/common';
+
+@Controller('users')
+export class UsersController {
+  @Get()
+  findAll(
+    @Query('page') page: string,
+    @Query('limit') limit: string,
+  ) {
+    return {
+      page: Number(page),
+      limit: Number(limit),
+    };
+  }
+}
+```
+
+Response:
+
+```json
+{
+  "page": 1,
+  "limit": 10
+}
+```
+
+---
+
+# 13. Request Body
+
+Install validation packages:
 
 ```bash
 npm install class-validator class-transformer
 ```
 
-```typescript
-// src/users/dto/create-user.dto.ts
-import { IsEmail, IsString, MinLength, IsOptional, IsIn } from 'class-validator';
+Create DTO:
 
+```ts
 export class CreateUserDto {
-  @IsString()
-  @MinLength(2, { message: 'Name must be at least 2 characters' })
   name: string;
-
-  @IsEmail({}, { message: 'Please provide a valid email address' })
   email: string;
-
-  @IsString()
-  @MinLength(6, { message: 'Password must be at least 6 characters' })
-  password: string;
-
-  @IsOptional()
-  @IsIn(['user', 'admin'])
-  role?: string;
 }
 ```
 
-```typescript
-// src/users/dto/update-user.dto.ts
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateUserDto } from './create-user.dto';
+Controller:
 
-// Makes all fields from CreateUserDto optional
-export class UpdateUserDto extends PartialType(CreateUserDto) {}
+```ts
+import {
+  Body,
+  Controller,
+  Post,
+} from '@nestjs/common';
+
+@Controller('users')
+export class UsersController {
+  @Post()
+  create(@Body() body: CreateUserDto) {
+    return body;
+  }
+}
 ```
 
-**English:** Enable global validation in `main.ts` so every DTO is checked automatically:
-**ខ្មែរ:** បើក global validation នៅក្នុង `main.ts` ដើម្បីឲ្យ DTO គ្រប់ខ្លួនត្រូវបានពិនិត្យដោយស្វ័យប្រវត្តិ៖
+Request:
 
-```typescript
-// src/main.ts
+```http
+POST /users
+Content-Type: application/json
+```
+
+```json
+{
+  "name": "Dara",
+  "email": "dara@example.com"
+}
+```
+
+---
+
+# 14. DTOs
+
+DTO means:
+
+> Data Transfer Object
+
+Create:
+
+```bash
+mkdir -p src/users/dto
+```
+
+## `create-user.dto.ts`
+
+```ts
+export class CreateUserDto {
+  name: string;
+  email: string;
+  age: number;
+}
+```
+
+Use:
+
+```ts
+@Post()
+create(@Body() dto: CreateUserDto) {
+  return dto;
+}
+```
+
+## Why DTO?
+
+DTOs help define the shape of incoming data.
+
+## ខ្មែរ
+
+DTO គឺជា Class ដែលកំណត់ថា Request របស់ Client ត្រូវមាន Data បែបណា។
+
+---
+
+# 15. Validation
+
+Use `class-validator`.
+
+Install:
+
+```bash
+npm install class-validator class-transformer
+```
+
+DTO:
+
+```ts
+import {
+  IsEmail,
+  IsInt,
+  IsNotEmpty,
+  Min,
+} from 'class-validator';
+
+export class CreateUserDto {
+  @IsNotEmpty()
+  name: string;
+
+  @IsEmail()
+  email: string;
+
+  @IsInt()
+  @Min(18)
+  age: number;
+}
+```
+
+Enable global validation.
+
+## `main.ts`
+
+```ts
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -414,1276 +839,2793 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,            // strip properties not in the DTO
-      forbidNonWhitelisted: true, // throw error if extra properties are sent
-      transform: true,            // auto-transform payloads to DTO instances
+      whitelist: true,
+      transform: true,
     }),
   );
 
   await app.listen(3000);
 }
+
 bootstrap();
 ```
 
----
+Now invalid data:
 
-## 9. Pipes
-
-**English:** Pipes transform or validate input data before it reaches a route handler. NestJS ships built-in pipes: `ValidationPipe`, `ParseIntPipe`, `ParseBoolPipe`, `ParseUUIDPipe`, `DefaultValuePipe`.
-
-**ខ្មែរ:** Pipe ប្រើសម្រាប់ transform ឬ validate ទិន្នន័យមុននឹងទៅដល់ route handler។ NestJS មាន pipe built-in ដូចជា `ValidationPipe`, `ParseIntPipe`, `ParseBoolPipe`, `ParseUUIDPipe`, `DefaultValuePipe`។
-
-```typescript
-// Using built-in pipes directly on parameters
-@Get(':id')
-findOne(@Param('id', ParseIntPipe) id: number) {
-  return this.usersService.findOne(id);
-}
-
-@Get()
-findAll(
-  @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
-  @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
-) {
-  return this.usersService.paginate(page, limit);
+```json
+{
+  "name": "",
+  "email": "wrong-email",
+  "age": 10
 }
 ```
 
-**English:** Custom pipe example:
-**ខ្មែរ:** ឧទាហរណ៍ pipe ផ្ទាល់ខ្លួន៖
+will be rejected.
 
-```typescript
-// src/common/pipes/trim.pipe.ts
-import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
+### Important options
 
-@Injectable()
-export class TrimPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
-    if (typeof value === 'string') {
-      return value.trim();
-    }
-    if (typeof value === 'object' && value !== null) {
-      Object.keys(value).forEach((key) => {
-        if (typeof value[key] === 'string') {
-          value[key] = value[key].trim();
-        }
-      });
-    }
-    return value;
-  }
-}
-```
-
----
-
-## 10. Middleware
-
-**English:** Middleware runs **before** the route handler, similar to Express middleware. Useful for logging, request modification, or authentication checks.
-
-**ខ្មែរ:** Middleware ដំណើរការ **មុន** route handler ស្រដៀងទៅ Express middleware។ មានប្រយោជន៍សម្រាប់ logging, កែប្រែ request ឬពិនិត្យ authentication។
-
-```typescript
-// src/common/middleware/logger.middleware.ts
-import { Injectable, NestMiddleware } from '@nestjs/common';
-import { Request, Response, NextFunction } from 'express';
-
-@Injectable()
-export class LoggerMiddleware implements NestMiddleware {
-  use(req: Request, res: Response, next: NextFunction) {
-    const start = Date.now();
-    res.on('finish', () => {
-      const ms = Date.now() - start;
-      console.log(`${req.method} ${req.originalUrl} ${res.statusCode} - ${ms}ms`);
-    });
-    next();
-  }
-}
-```
-
-```typescript
-// src/app.module.ts
-import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
-import { LoggerMiddleware } from './common/middleware/logger.middleware';
-import { UsersModule } from './users/users.module';
-
-@Module({
-  imports: [UsersModule],
+```ts
+new ValidationPipe({
+  whitelist: true,
+  transform: true,
+  forbidNonWhitelisted: true,
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .exclude({ path: 'health', method: RequestMethod.GET }) // skip some routes
-      .forRoutes('*'); // apply to all routes
-  }
-}
 ```
+
+`whitelist: true`
+
+Removes properties that are not decorated.
+
+`transform: true`
+
+Transforms request values into DTO types where supported.
+
+`forbidNonWhitelisted: true`
+
+Rejects unexpected properties instead of silently removing them.
 
 ---
 
-## 11. Guards & Authentication (JWT)
+# 16. Pipes
 
-**English:** Guards determine whether a request should be handled by the route handler, mostly used for **authentication** and **authorization**. Let's build JWT authentication with Passport.
+Pipes are commonly used for:
 
-**ខ្មែរ:** Guard កំណត់ថាតើ request គួរត្រូវបានដំណើរការដោយ route handler ដែរឬទេ ភាគច្រើនប្រើសម្រាប់ **authentication** និង **authorization**។ ខាងក្រោមនេះជាឧទាហរណ៍បង្កើត JWT authentication ជាមួយ Passport។
+* Validation
+* Transformation
 
-```bash
-npm install @nestjs/jwt @nestjs/passport passport passport-jwt bcrypt
-npm install -D @types/passport-jwt @types/bcrypt
-```
+Example:
 
-```typescript
-// src/auth/auth.module.ts
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { AuthService } from './auth.service';
-import { AuthController } from './auth.controller';
-import { JwtStrategy } from './jwt.strategy';
-import { UsersModule } from '../users/users.module';
+```ts
+import {
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+} from '@nestjs/common';
 
-@Module({
-  imports: [
-    UsersModule,
-    PassportModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECRET || 'change-this-secret',
-      signOptions: { expiresIn: '1d' },
-    }),
-  ],
-  controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
-  exports: [AuthService],
-})
-export class AuthModule {}
-```
-
-```typescript
-// src/auth/auth.service.ts
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-import { UsersService } from '../users/users.service';
-
-@Injectable()
-export class AuthService {
-  constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService,
-  ) {}
-
-  async validateUser(email: string, password: string) {
-    const user = this.usersService.findAll().find((u) => u.email === email) as any;
-    if (user && (await bcrypt.compare(password, user.password))) {
-      const { password: _pw, ...result } = user;
-      return result;
-    }
-    throw new UnauthorizedException('Invalid email or password');
-  }
-
-  async login(user: { id: number; email: string }) {
-    const payload = { sub: user.id, email: user.email };
+@Controller('users')
+export class UsersController {
+  @Get(':id')
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+  ) {
     return {
-      access_token: this.jwtService.sign(payload),
+      id,
+      type: typeof id,
     };
   }
 }
 ```
 
-```typescript
-// src/auth/jwt.strategy.ts
-import { Injectable } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+Request:
+
+```http
+GET /users/10
+```
+
+`id` becomes:
+
+```text
+number
+```
+
+Invalid:
+
+```http
+GET /users/abc
+```
+
+returns a `400 Bad Request`.
+
+---
+
+# 17. Exception Handling
+
+NestJS provides built-in HTTP exceptions.
+
+Example:
+
+```ts
+import {
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor() {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET || 'change-this-secret',
-    });
-  }
+export class UsersService {
+  findOne(id: number) {
+    const user = null;
 
-  // Runs after the JWT signature is verified
-  async validate(payload: { sub: number; email: string }) {
-    return { userId: payload.sub, email: payload.email };
+    if (!user) {
+      throw new NotFoundException(
+        'User not found',
+      );
+    }
+
+    return user;
   }
 }
 ```
 
-```typescript
-// src/auth/jwt-auth.guard.ts
-import { Injectable } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+Common exceptions:
 
-@Injectable()
-export class JwtAuthGuard extends AuthGuard('jwt') {}
+```ts
+BadRequestException
+UnauthorizedException
+ForbiddenException
+NotFoundException
+ConflictException
+InternalServerErrorException
 ```
 
-```typescript
-// src/auth/auth.controller.ts
-import { Body, Controller, Post, UseGuards, Get, Request } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { JwtAuthGuard } from './jwt-auth.guard';
+Example:
 
-@Controller('auth')
-export class AuthController {
-  constructor(private authService: AuthService) {}
+```ts
+throw new BadRequestException(
+  'Invalid request',
+);
+```
 
-  @Post('login')
-  async login(@Body() body: { email: string; password: string }) {
-    const user = await this.authService.validateUser(body.email, body.password);
-    return this.authService.login(user);
-  }
+---
 
-  // Protected route example
-  @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user; // set by JwtStrategy.validate()
+# 18. Middleware
+
+Middleware runs before a route handler.
+
+Example:
+
+```ts
+import {
+  Injectable,
+  NestMiddleware,
+} from '@nestjs/common';
+
+import { Request, Response, NextFunction } from 'express';
+
+@Injectable()
+export class LoggerMiddleware
+  implements NestMiddleware
+{
+  use(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    console.log(
+      `${req.method} ${req.originalUrl}`,
+    );
+
+    next();
   }
 }
 ```
 
-**English:** Apply the guard on any controller/route you want to protect:
-**ខ្មែរ:** អនុវត្ត guard លើ controller/route ណាមួយដែលអ្នកចង់ការពារ៖
+Register:
 
-```typescript
-@UseGuards(JwtAuthGuard)
-@Get('secure-data')
-getSecureData() {
-  return { message: 'This is protected data' };
-}
-```
+```ts
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+} from '@nestjs/common';
 
-### Role-based Guard / Guard តាមតួនាទី
-
-```typescript
-// src/auth/roles.guard.ts
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
-import { ROLES_KEY } from './roles.decorator';
-
-@Injectable()
-export class RolesGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
-
-  canActivate(context: ExecutionContext): boolean {
-    const requiredRoles = this.reflector.getAllAndOverride<string[]>(ROLES_KEY, [
-      context.getHandler(),
-      context.getClass(),
-    ]);
-    if (!requiredRoles) return true;
-
-    const { user } = context.switchToHttp().getRequest();
-    return requiredRoles.some((role) => user?.role === role);
+@Module({})
+export class AppModule
+  implements NestModule
+{
+  configure(
+    consumer: MiddlewareConsumer,
+  ) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes('*');
   }
 }
 ```
 
 ---
 
-## 12. Interceptors
+# 19. Guards
 
-**English:** Interceptors can transform the result returned from a route handler, log execution time, or add extra logic before/after the handler runs (similar to AOP / middleware but with access to the return value).
+Guards determine whether a request can continue.
 
-**ខ្មែរ:** Interceptor អាច transform លទ្ធផលដែលត្រឡប់ពី route handler, log ពេលវេលាដំណើរការ ឬបន្ថែម logic មុន/ក្រោយ handler ដំណើរការ (ស្រដៀង AOP ប៉ុន្តែអាចចូលដំណើរការទិន្នន័យត្រឡប់)។
+Common use:
 
-```typescript
-// src/common/interceptors/logging.interceptor.ts
+```text
+Authentication
+Authorization
+Roles
+Permissions
+```
+
+Create:
+
+```bash
+nest g guard auth
+```
+
+Example:
+
+```ts
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+} from '@nestjs/common';
+
+@Injectable()
+export class AuthGuard
+  implements CanActivate
+{
+  canActivate(
+    context: ExecutionContext,
+  ): boolean {
+    const request =
+      context.switchToHttp().getRequest();
+
+    return Boolean(request.headers.authorization);
+  }
+}
+```
+
+Use:
+
+```ts
+import { UseGuards } from '@nestjs/common';
+
+@UseGuards(AuthGuard)
+@Get('profile')
+getProfile() {
+  return {
+    message: 'Authenticated',
+  };
+}
+```
+
+---
+
+# 20. Interceptors
+
+Interceptors can run code before and after a handler.
+
+Useful for:
+
+* Logging
+* Response transformation
+* Timing
+* Caching
+* Error handling
+
+Example:
+
+```ts
 import {
   CallHandler,
   ExecutionContext,
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+
+import { Observable, tap } from 'rxjs';
 
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const request = context.switchToHttp().getRequest();
-    const now = Date.now();
+export class LoggingInterceptor
+  implements NestInterceptor
+{
+  intercept(
+    context: ExecutionContext,
+    next: CallHandler,
+  ): Observable<any> {
+    const started = Date.now();
+
     return next.handle().pipe(
-      tap(() =>
-        console.log(`${request.method} ${request.url} - ${Date.now() - now}ms`),
-      ),
+      tap(() => {
+        console.log(
+          `Request took ${
+            Date.now() - started
+          }ms`,
+        );
+      }),
     );
   }
 }
 ```
 
-```typescript
-// src/common/interceptors/transform.interceptor.ts
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+Use:
 
-export interface Response<T> {
-  data: T;
-  success: true;
-  timestamp: string;
+```ts
+@UseInterceptors(LoggingInterceptor)
+@Get()
+findAll() {
+  return [];
 }
-
-@Injectable()
-export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<Response<T>> {
-    return next.handle().pipe(
-      map((data) => ({
-        data,
-        success: true,
-        timestamp: new Date().toISOString(),
-      })),
-    );
-  }
-}
-```
-
-**Usage / ការប្រើប្រាស់:**
-
-```typescript
-@UseInterceptors(LoggingInterceptor, TransformInterceptor)
-@Controller('users')
-export class UsersController { /* ... */ }
 ```
 
 ---
 
-## 13. Exception Filters
+# 21. Custom Decorators
 
-**English:** Exception filters catch unhandled exceptions and format a clean error response. NestJS has a built-in exception layer, but you can customize it.
+You can create reusable decorators.
 
-**ខ្មែរ:** Exception filter ចាប់យក exception ដែលមិនត្រូវបានគ្រប់គ្រង ហើយធ្វើទ្រង់ទ្រាយ error response ឲ្យស្អាត។ NestJS មាន exception layer built-in ប៉ុន្តែអ្នកអាចប្តូរតាមចិត្តបាន។
+Example:
 
-```typescript
-// src/common/filters/http-exception.filter.ts
+```ts
 import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-  HttpStatus,
+  createParamDecorator,
+  ExecutionContext,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
 
-@Catch(HttpException)
-export class HttpExceptionFilter implements ExceptionFilter {
-  catch(exception: HttpException, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse<Response>();
-    const request = ctx.getRequest<Request>();
-    const status = exception.getStatus();
-    const exceptionResponse = exception.getResponse();
+export const CurrentUser =
+  createParamDecorator(
+    (
+      data: unknown,
+      context: ExecutionContext,
+    ) => {
+      const request =
+        context.switchToHttp().getRequest();
 
-    response.status(status).json({
-      success: false,
-      statusCode: status,
-      timestamp: new Date().toISOString(),
-      path: request.url,
-      message:
-        typeof exceptionResponse === 'string'
-          ? exceptionResponse
-          : (exceptionResponse as any).message,
-    });
-  }
-}
+      return request.user;
+    },
+  );
 ```
 
-**Register globally / ចុះឈ្មោះជា global:**
+Use:
 
-```typescript
-// src/main.ts
-app.useGlobalFilters(new HttpExceptionFilter());
-```
-
----
-
-## 14. Custom Decorators
-
-**English:** Create your own parameter decorators to extract data cleanly, e.g., getting the current authenticated user.
-
-**ខ្មែរ:** បង្កើត parameter decorator ផ្ទាល់ខ្លួនដើម្បីទាញយកទិន្នន័យបានស្អាត ឧ. ការទាញយក user ដែលបាន login រួច។
-
-```typescript
-// src/common/decorators/current-user.decorator.ts
-import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-
-export const CurrentUser = createParamDecorator(
-  (data: unknown, ctx: ExecutionContext) => {
-    const request = ctx.switchToHttp().getRequest();
-    return request.user;
-  },
-);
-```
-
-```typescript
-// src/common/decorators/roles.decorator.ts
-import { SetMetadata } from '@nestjs/common';
-
-export const ROLES_KEY = 'roles';
-export const Roles = (...roles: string[]) => SetMetadata(ROLES_KEY, roles);
-```
-
-**Usage / ការប្រើប្រាស់:**
-
-```typescript
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Roles('admin')
+```ts
 @Get('profile')
-getProfile(@CurrentUser() user: any) {
+getProfile(
+  @CurrentUser() user: any,
+) {
   return user;
 }
 ```
 
+This becomes especially useful with JWT authentication.
+
 ---
 
-## 15. Configuration (.env)
+# 22. Configuration and Environment Variables
 
-**English:** Use `@nestjs/config` to manage environment variables cleanly across environments.
-
-**ខ្មែរ:** ប្រើ `@nestjs/config` ដើម្បីគ្រប់គ្រង environment variable ឲ្យស្អាតលើគ្រប់ environment។
+Install:
 
 ```bash
 npm install @nestjs/config
 ```
 
-```env
-# .env
-PORT=3000
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_USER=postgres
-DATABASE_PASSWORD=postgres
-DATABASE_NAME=nest_app
-JWT_SECRET=super-secret-key
+Create:
+
+```text
+.env
 ```
 
-```typescript
-// src/app.module.ts
+```env
+PORT=3000
+DATABASE_URL=postgresql://postgres:password@localhost:5432/mydb
+JWT_SECRET=change-this-secret
+```
+
+## `app.module.ts`
+
+```ts
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,     // available everywhere without re-importing
-      envFilePath: '.env',
+      isGlobal: true,
     }),
   ],
 })
 export class AppModule {}
 ```
 
-```typescript
-// Usage in any service
-import { Injectable } from '@nestjs/common';
+Use:
+
+```ts
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()
-export class DatabaseService {
-  constructor(private configService: ConfigService) {
-    const host = this.configService.get<string>('DATABASE_HOST');
-    console.log(host);
+export class AppService {
+  constructor(
+    private readonly configService: ConfigService,
+  ) {}
+
+  getPort() {
+    return this.configService.get<number>('PORT');
   }
 }
 ```
 
-> ⚠️ **Important / សំខាន់:** Add `.env` to `.gitignore` — never commit secrets to GitHub.
-> កុំដាក់ `.env` ចូល GitHub ជាដាច់ខាត — ត្រូវដាក់វាក្នុង `.gitignore`។
+## `.gitignore`
+
+```gitignore
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+```
+
+Create:
+
+```text
+.env.example
+```
+
+```env
+PORT=3000
+DATABASE_URL=
+JWT_SECRET=
+```
+
+Never commit real secrets.
 
 ---
 
-## 16. Database with TypeORM (PostgreSQL)
+# 23. CRUD API
 
-**English:** TypeORM is the most common ORM used with NestJS. Install the required packages:
+A typical CRUD API contains:
 
-**ខ្មែរ:** TypeORM ជា ORM ដែលគេប្រើញឹកញាប់បំផុតជាមួយ NestJS។ ដំឡើង package ចាំបាច់៖
+```text
+POST   /users
+GET    /users
+GET    /users/:id
+PATCH  /users/:id
+DELETE /users/:id
+```
+
+Generate:
+
+```bash
+nest g resource users
+```
+
+Nest CLI can generate a resource with controller, service, DTOs, entity, and related files depending on the selected options.
+
+---
+
+# 24. Complete CRUD Without Database
+
+This example uses an in-memory array.
+
+## `users.service.ts`
+
+```ts
+import {
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+@Injectable()
+export class UsersService {
+  private users: User[] = [];
+
+  private nextId = 1;
+
+  create(dto: CreateUserDto) {
+    const user: User = {
+      id: this.nextId++,
+      name: dto.name,
+      email: dto.email,
+    };
+
+    this.users.push(user);
+
+    return user;
+  }
+
+  findAll() {
+    return this.users;
+  }
+
+  findOne(id: number) {
+    const user = this.users.find(
+      (user) => user.id === id,
+    );
+
+    if (!user) {
+      throw new NotFoundException(
+        'User not found',
+      );
+    }
+
+    return user;
+  }
+
+  update(
+    id: number,
+    dto: UpdateUserDto,
+  ) {
+    const user = this.findOne(id);
+
+    if (dto.name !== undefined) {
+      user.name = dto.name;
+    }
+
+    if (dto.email !== undefined) {
+      user.email = dto.email;
+    }
+
+    return user;
+  }
+
+  remove(id: number) {
+    const index = this.users.findIndex(
+      (user) => user.id === id,
+    );
+
+    if (index === -1) {
+      throw new NotFoundException(
+        'User not found',
+      );
+    }
+
+    this.users.splice(index, 1);
+
+    return {
+      message: 'User deleted',
+    };
+  }
+}
+```
+
+## `create-user.dto.ts`
+
+```ts
+import {
+  IsEmail,
+  IsNotEmpty,
+} from 'class-validator';
+
+export class CreateUserDto {
+  @IsNotEmpty()
+  name: string;
+
+  @IsEmail()
+  email: string;
+}
+```
+
+## `update-user.dto.ts`
+
+```ts
+import {
+  IsEmail,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+
+export class UpdateUserDto {
+  @IsOptional()
+  @IsString()
+  name?: string;
+
+  @IsOptional()
+  @IsEmail()
+  email?: string;
+}
+```
+
+## `users.controller.ts`
+
+```ts
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
+
+import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+
+@Controller('users')
+export class UsersController {
+  constructor(
+    private readonly usersService: UsersService,
+  ) {}
+
+  @Post()
+  create(
+    @Body() dto: CreateUserDto,
+  ) {
+    return this.usersService.create(dto);
+  }
+
+  @Get()
+  findAll() {
+    return this.usersService.findAll();
+  }
+
+  @Get(':id')
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return this.usersService.findOne(id);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateUserDto,
+  ) {
+    return this.usersService.update(
+      id,
+      dto,
+    );
+  }
+
+  @Delete(':id')
+  remove(
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    return this.usersService.remove(id);
+  }
+}
+```
+
+---
+
+# 25. Database with TypeORM
+
+Install:
 
 ```bash
 npm install @nestjs/typeorm typeorm pg
 ```
 
-```typescript
-// src/app.module.ts
+For PostgreSQL.
+
+## `app.module.ts`
+
+```ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get('DATABASE_HOST'),
-        port: config.get<number>('DATABASE_PORT'),
-        username: config.get('DATABASE_USER'),
-        password: config.get('DATABASE_PASSWORD'),
-        database: config.get('DATABASE_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, // ⚠️ development only — never use in production
-      }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'password',
+      database: 'nestdb',
+      autoLoadEntities: true,
+      synchronize: false,
     }),
-    UsersModule,
   ],
 })
 export class AppModule {}
 ```
 
-```typescript
-// src/users/entities/user.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+> `synchronize: true` can be convenient for learning but should generally not be used for production database schema management.
+
+## Entity
+
+```ts
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 100 })
+  @Column()
   name: string;
 
   @Column({ unique: true })
   email: string;
-
-  @Column()
-  password: string;
-
-  @Column({ default: 'user' })
-  role: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
 }
 ```
 
-```typescript
-// src/users/users.module.ts (updated with TypeORM)
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
+Register:
 
+```ts
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
-  controllers: [UsersController],
-  providers: [UsersService],
-  exports: [UsersService],
+  imports: [
+    TypeOrmModule.forFeature([
+      User,
+    ]),
+  ],
 })
 export class UsersModule {}
 ```
 
-```typescript
-// src/users/users.service.ts (updated with Repository pattern)
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+Inject repository:
 
+```ts
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private readonly usersRepository:
+      Repository<User>,
   ) {}
 
-  findAll(): Promise<User[]> {
+  findAll() {
     return this.usersRepository.find();
   }
-
-  async findOne(id: number): Promise<User> {
-    const user = await this.usersRepository.findOneBy({ id });
-    if (!user) {
-      throw new NotFoundException(`User with ID ${id} not found`);
-    }
-    return user;
-  }
-
-  create(dto: CreateUserDto): Promise<User> {
-    const user = this.usersRepository.create(dto);
-    return this.usersRepository.save(user);
-  }
-
-  async update(id: number, dto: UpdateUserDto): Promise<User> {
-    const user = await this.findOne(id);
-    Object.assign(user, dto);
-    return this.usersRepository.save(user);
-  }
-
-  async remove(id: number): Promise<void> {
-    const result = await this.usersRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`User with ID ${id} not found`);
-    }
-  }
 }
 ```
 
 ---
 
-## 17. Relationships (One-to-Many, Many-to-Many)
+# 26. Database with Prisma
 
-**English:** Example: a `User` can have many `Post`s (one-to-many), and a `Post` can have many `Tag`s (many-to-many).
+Prisma is another popular database approach.
 
-**ខ្មែរ:** ឧទាហរណ៍៖ `User` ម្នាក់អាចមាន `Post` ច្រើន (one-to-many) ហើយ `Post` មួយអាចមាន `Tag` ច្រើន (many-to-many)។
+Install:
 
-```typescript
-// src/posts/entities/post.entity.ts
+```bash
+npm install prisma @prisma/client
+```
+
+Initialize:
+
+```bash
+npx prisma init
+```
+
+Example schema:
+
+## `prisma/schema.prisma`
+
+```prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+```
+
+Migration:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+Generate client:
+
+```bash
+npx prisma generate
+```
+
+Create Prisma service:
+
+```ts
 import {
-  Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable,
-} from 'typeorm';
-import { User } from '../../users/entities/user.entity';
-import { Tag } from './tag.entity';
+  Injectable,
+  OnModuleInit,
+} from '@nestjs/common';
 
-@Entity('posts')
-export class Post {
-  @PrimaryGeneratedColumn()
-  id: number;
+import { PrismaClient } from '@prisma/client';
 
-  @Column()
-  title: string;
-
-  @Column('text')
-  content: string;
-
-  @ManyToOne(() => User, (user) => user.posts, { onDelete: 'CASCADE' })
-  author: User;
-
-  @ManyToMany(() => Tag, (tag) => tag.posts, { cascade: true })
-  @JoinTable() // owning side creates the join table
-  tags: Tag[];
+@Injectable()
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit
+{
+  async onModuleInit() {
+    await this.$connect();
+  }
 }
 ```
 
-```typescript
-// src/users/entities/user.entity.ts (add relation)
-import { OneToMany } from 'typeorm';
-import { Post } from '../../posts/entities/post.entity';
-// ...inside the User class:
-@OneToMany(() => Post, (post) => post.author)
-posts: Post[];
-```
+Use:
 
-```typescript
-// src/posts/entities/tag.entity.ts
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
-import { Post } from './post.entity';
+```ts
+@Injectable()
+export class UsersService {
+  constructor(
+    private readonly prisma: PrismaService,
+  ) {}
 
-@Entity('tags')
-export class Tag {
-  @PrimaryGeneratedColumn()
-  id: number;
+  findAll() {
+    return this.prisma.user.findMany();
+  }
 
-  @Column({ unique: true })
-  name: string;
+  findOne(id: number) {
+    return this.prisma.user.findUnique({
+      where: { id },
+    });
+  }
 
-  @ManyToMany(() => Post, (post) => post.tags)
-  posts: Post[];
+  create(data: {
+    name: string;
+    email: string;
+  }) {
+    return this.prisma.user.create({
+      data,
+    });
+  }
 }
-```
-
-**Querying with relations / ការសួរជាមួយ relation:**
-
-```typescript
-// Load a post together with its author and tags
-this.postsRepository.find({ relations: ['author', 'tags'] });
 ```
 
 ---
 
-## 18. Swagger / OpenAPI Documentation
+# 27. Authentication with JWT
 
-**English:** NestJS integrates directly with Swagger to auto-generate interactive API documentation.
+Install:
 
-**ខ្មែរ:** NestJS ភ្ជាប់ជាមួយ Swagger ដោយផ្ទាល់ ដើម្បីបង្កើត API documentation ដោយស្វ័យប្រវត្តិ។
+```bash
+npm install @nestjs/jwt
+```
+
+A production authentication system normally contains:
+
+```text
+Register
+   ↓
+Hash Password
+   ↓
+Save User
+   ↓
+Login
+   ↓
+Verify Password
+   ↓
+Create JWT
+   ↓
+Client sends Bearer token
+   ↓
+JWT Guard
+   ↓
+Protected Controller
+```
+
+Install Passport support:
+
+```bash
+npm install @nestjs/passport passport
+npm install passport-jwt
+npm install @types/passport-jwt --save-dev
+```
+
+JWT module:
+
+```ts
+import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+
+@Module({
+  imports: [
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: {
+        expiresIn: '15m',
+      },
+    }),
+  ],
+})
+export class AuthModule {}
+```
+
+Create token:
+
+```ts
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly jwtService: JwtService,
+  ) {}
+
+  async login(user: {
+    id: number;
+    email: string;
+  }) {
+    const payload = {
+      sub: user.id,
+      email: user.email,
+    };
+
+    return {
+      access_token:
+        await this.jwtService.signAsync(
+          payload,
+        ),
+    };
+  }
+}
+```
+
+---
+
+# 28. Authorization and Roles
+
+Authentication answers:
+
+> Who are you?
+
+Authorization answers:
+
+> What are you allowed to do?
+
+Create roles:
+
+```ts
+export enum Role {
+  USER = 'user',
+  ADMIN = 'admin',
+}
+```
+
+Decorator:
+
+```ts
+import { SetMetadata } from '@nestjs/common';
+
+export const Roles = (
+  ...roles: Role[]
+) => SetMetadata('roles', roles);
+```
+
+Use:
+
+```ts
+@Roles(Role.ADMIN)
+@Get('admin')
+adminOnly() {
+  return {
+    message: 'Admin area',
+  };
+}
+```
+
+A roles guard can read the metadata and compare it with the authenticated user.
+
+---
+
+# 29. Swagger / OpenAPI
+
+Install:
 
 ```bash
 npm install @nestjs/swagger
 ```
 
-```typescript
-// src/main.ts
+## `main.ts`
+
+```ts
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import {
+  DocumentBuilder,
+  SwaggerModule,
+} from '@nestjs/swagger';
+
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app =
+    await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder()
-    .setTitle('Task Manager API')
-    .setDescription('API documentation for the Task Manager application')
-    .setVersion('1.0')
-    .addBearerAuth() // enables JWT auth in Swagger UI
-    .build();
+  const config =
+    new DocumentBuilder()
+      .setTitle('My API')
+      .setDescription(
+        'NestJS REST API documentation',
+      )
+      .setVersion('1.0')
+      .addBearerAuth()
+      .build();
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document); // available at /api-docs
+  const document =
+    SwaggerModule.createDocument(
+      app,
+      config,
+    );
+
+  SwaggerModule.setup(
+    'docs',
+    app,
+    document,
+  );
 
   await app.listen(3000);
 }
+
 bootstrap();
 ```
 
-```typescript
-// Annotate DTOs and controllers for richer docs
-import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsString, MinLength } from 'class-validator';
+Open:
 
-export class CreateUserDto {
-  @ApiProperty({ example: 'Sophea Chan', minLength: 2 })
-  @IsString()
-  @MinLength(2)
-  name: string;
-
-  @ApiProperty({ example: 'sophea@example.com' })
-  @IsEmail()
-  email: string;
-
-  @ApiProperty({ example: 'strongPassword123', minLength: 6 })
-  @IsString()
-  @MinLength(6)
-  password: string;
-}
+```text
+http://localhost:3000/docs
 ```
 
-```typescript
-import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+DTO example:
 
-@ApiTags('users')
-@Controller('users')
-export class UsersController {
-  @ApiOperation({ summary: 'Get all users' })
-  @Get()
-  findAll() { /* ... */ }
+```ts
+import {
+  ApiProperty,
+} from '@nestjs/swagger';
 
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) { /* ... */ }
+export class CreateUserDto {
+  @ApiProperty({
+    example: 'Dara',
+  })
+  name: string;
+
+  @ApiProperty({
+    example: 'dara@example.com',
+  })
+  email: string;
 }
 ```
 
 ---
 
-## 19. Testing (Jest)
+# 30. API Versioning
 
-**English:** NestJS uses **Jest** by default. There are two kinds of tests: **unit tests** (`.spec.ts`) and **end-to-end tests** (`.e2e-spec.ts`).
+Enable URI versioning:
 
-**ខ្មែរ:** NestJS ប្រើ **Jest** ជាលំនាំដើម។ មាន test ពីរប្រភេទគឺ **unit test** (`.spec.ts`) និង **end-to-end test** (`.e2e-spec.ts`)។
+```ts
+app.enableVersioning({
+  type: VersioningType.URI,
+});
+```
 
-```typescript
-// src/users/users.service.spec.ts
-import { Test, TestingModule } from '@nestjs/testing';
-import { UsersService } from './users.service';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
-import { NotFoundException } from '@nestjs/common';
+Import:
 
-describe('UsersService', () => {
-  let service: UsersService;
-  const mockRepository = {
-    find: jest.fn(),
-    findOneBy: jest.fn(),
-    create: jest.fn(),
-    save: jest.fn(),
-    delete: jest.fn(),
-  };
+```ts
+import {
+  VersioningType,
+} from '@nestjs/common';
+```
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        UsersService,
-        { provide: getRepositoryToken(User), useValue: mockRepository },
-      ],
-    }).compile();
+Controller:
 
-    service = module.get<UsersService>(UsersService);
+```ts
+@Controller({
+  path: 'users',
+  version: '1',
+})
+export class UsersController {
+  @Get()
+  findAll() {
+    return [];
+  }
+}
+```
+
+Request:
+
+```http
+GET /v1/users
+```
+
+---
+
+# 31. CORS
+
+Enable CORS:
+
+```ts
+async function bootstrap() {
+  const app =
+    await NestFactory.create(AppModule);
+
+  app.enableCors();
+
+  await app.listen(3000);
+}
+```
+
+More restrictive:
+
+```ts
+app.enableCors({
+  origin: [
+    'http://localhost:3001',
+  ],
+  credentials: true,
+});
+```
+
+Production should use a specific trusted origin rather than allowing everything.
+
+---
+
+# 32. Helmet
+
+Install:
+
+```bash
+npm install helmet
+```
+
+Use:
+
+```ts
+import helmet from 'helmet';
+
+async function bootstrap() {
+  const app =
+    await NestFactory.create(AppModule);
+
+  app.use(helmet());
+
+  await app.listen(3000);
+}
+```
+
+Helmet adds security-related HTTP headers.
+
+---
+
+# 33. Rate Limiting
+
+Install:
+
+```bash
+npm install @nestjs/throttler
+```
+
+Configure:
+
+```ts
+import { Module } from '@nestjs/common';
+import {
+  ThrottlerModule,
+} from '@nestjs/throttler';
+
+@Module({
+  imports: [
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 100,
+      },
+    ]),
+  ],
+})
+export class AppModule {}
+```
+
+Meaning:
+
+```text
+100 requests
+within 60 seconds
+```
+
+Adjust the values according to your application.
+
+---
+
+# 34. File Upload
+
+NestJS supports multipart file uploads.
+
+Controller:
+
+```ts
+import {
+  Controller,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+
+import {
+  FileInterceptor,
+} from '@nestjs/platform-express';
+
+@Controller('files')
+export class FilesController {
+  @Post('upload')
+  @UseInterceptors(
+    FileInterceptor('file'),
+  )
+  upload(
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return {
+      filename: file.originalname,
+      size: file.size,
+      mimetype: file.mimetype,
+    };
+  }
+}
+```
+
+Send using:
+
+```text
+multipart/form-data
+```
+
+Field:
+
+```text
+file
+```
+
+For production, validate:
+
+* File size
+* MIME type
+* Extension
+* Filename
+* Storage location
+* Malware/security requirements
+
+---
+
+# 35. Logging
+
+NestJS includes a Logger.
+
+```ts
+import {
+  Injectable,
+  Logger,
+} from '@nestjs/common';
+
+@Injectable()
+export class UsersService {
+  private readonly logger =
+    new Logger(UsersService.name);
+
+  findAll() {
+    this.logger.log(
+      'Finding all users',
+    );
+
+    return [];
+  }
+}
+```
+
+Other methods:
+
+```ts
+this.logger.log('Information');
+this.logger.warn('Warning');
+this.logger.error('Error');
+this.logger.debug('Debug');
+this.logger.verbose('Verbose');
+```
+
+---
+
+# 36. Testing
+
+Testing is important for serious applications.
+
+NestJS supports unit and end-to-end testing workflows. The generated projects include test tooling.
+
+## Unit test
+
+Example service:
+
+```ts
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class CalculatorService {
+  add(
+    a: number,
+    b: number,
+  ) {
+    return a + b;
+  }
+}
+```
+
+Test:
+
+```ts
+describe('CalculatorService', () => {
+  let service: CalculatorService;
+
+  beforeEach(() => {
+    service = new CalculatorService();
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-
-  it('should throw NotFoundException when user does not exist', async () => {
-    mockRepository.findOneBy.mockResolvedValue(null);
-    await expect(service.findOne(999)).rejects.toThrow(NotFoundException);
-  });
-
-  it('should return all users', async () => {
-    const users = [{ id: 1, name: 'Dara' }];
-    mockRepository.find.mockResolvedValue(users);
-    expect(await service.findAll()).toEqual(users);
+  it('should add numbers', () => {
+    expect(
+      service.add(2, 3),
+    ).toBe(5);
   });
 });
 ```
 
-```typescript
-// test/users.e2e-spec.ts
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+Run:
 
-describe('UsersController (e2e)', () => {
-  let app: INestApplication;
+```bash
+npm test
+```
 
-  beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
+---
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
-  });
+# 37. E2E Testing
 
+E2E means:
+
+> End-to-End
+
+It tests the application through HTTP instead of testing only an individual class.
+
+Typical flow:
+
+```text
+HTTP Request
+     ↓
+Middleware
+     ↓
+Guard
+     ↓
+Interceptor
+     ↓
+Controller
+     ↓
+Service
+     ↓
+Database
+     ↓
+HTTP Response
+```
+
+Example:
+
+```ts
+describe('Users API', () => {
   it('/users (GET)', () => {
     return request(app.getHttpServer())
       .get('/users')
       .expect(200);
   });
-
-  it('/users (POST) - should validate input', () => {
-    return request(app.getHttpServer())
-      .post('/users')
-      .send({ name: 'A' }) // missing required fields
-      .expect(400);
-  });
-
-  afterAll(async () => {
-    await app.close();
-  });
 });
 ```
 
-```bash
-npm run test          # unit tests
-npm run test:watch    # watch mode
-npm run test:cov      # coverage report
-npm run test:e2e      # end-to-end tests
+---
+
+# 38. Caching
+
+Caching can improve performance.
+
+Typical examples:
+
+```text
+Database query
+API response
+Expensive calculations
+External API responses
 ```
+
+A cache architecture might be:
+
+```text
+Client
+  ↓
+NestJS
+  ↓
+Cache
+  ├── HIT → Return cached data
+  │
+  └── MISS
+        ↓
+      Database
+        ↓
+      Save cache
+        ↓
+      Return
+```
+
+For distributed production systems, Redis is a common choice.
 
 ---
 
-## 20. WebSockets Gateway
+# 39. Events
 
-**English:** NestJS supports real-time communication via WebSockets using `@WebSocketGateway()`.
+NestJS can use event-driven architecture.
 
-**ខ្មែរ:** NestJS គាំទ្រការទំនាក់ទំនងជាបន្ទាន់តាមរយៈ WebSocket ដោយប្រើ `@WebSocketGateway()`។
+Install:
 
 ```bash
-npm install @nestjs/websockets @nestjs/platform-socket.io socket.io
+npm install @nestjs/event-emitter
 ```
 
-```typescript
-// src/chat/chat.gateway.ts
-import {
-  WebSocketGateway,
-  WebSocketServer,
-  SubscribeMessage,
-  MessageBody,
-  ConnectedSocket,
-} from '@nestjs/websockets';
-import { Server, Socket } from 'socket.io';
+Module:
 
-@WebSocketGateway({ cors: { origin: '*' } })
-export class ChatGateway {
-  @WebSocketServer()
-  server: Server;
-
-  @SubscribeMessage('sendMessage')
-  handleMessage(
-    @MessageBody() data: { room: string; message: string },
-    @ConnectedSocket() client: Socket,
-  ) {
-    // Broadcast to everyone in the room
-    this.server.to(data.room).emit('newMessage', data.message);
-  }
-
-  @SubscribeMessage('joinRoom')
-  handleJoinRoom(
-    @MessageBody() room: string,
-    @ConnectedSocket() client: Socket,
-  ) {
-    client.join(room);
-    client.emit('joinedRoom', room);
-  }
-}
-```
-
-```typescript
-// src/chat/chat.module.ts
+```ts
 import { Module } from '@nestjs/common';
-import { ChatGateway } from './chat.gateway';
+import {
+  EventEmitterModule,
+} from '@nestjs/event-emitter';
 
 @Module({
-  providers: [ChatGateway],
+  imports: [
+    EventEmitterModule.forRoot(),
+  ],
 })
-export class ChatModule {}
+export class AppModule {}
+```
+
+Emit:
+
+```ts
+this.eventEmitter.emit(
+  'user.created',
+  {
+    userId: user.id,
+  },
+);
+```
+
+Listen:
+
+```ts
+import {
+  OnEvent,
+} from '@nestjs/event-emitter';
+
+@OnEvent('user.created')
+handleUserCreated(payload: {
+  userId: number;
+}) {
+  console.log(
+    'User created:',
+    payload.userId,
+  );
+}
+```
+
+Useful for:
+
+```text
+Email notifications
+Audit logs
+Notifications
+Analytics
+Background workflows
 ```
 
 ---
 
-## 21. Microservices (Overview)
+# 40. Queues
 
-**English:** NestJS can build microservices communicating over TCP, Redis, RabbitMQ, Kafka, gRPC, and more. Basic TCP example:
+Queues are useful for background jobs.
 
-**ខ្មែរ:** NestJS អាចសាងសង់ microservice ដែលទំនាក់ទំនងតាម TCP, Redis, RabbitMQ, Kafka, gRPC ជាដើម។ ឧទាហរណ៍មូលដ្ឋានតាម TCP៖
+Examples:
 
-```bash
-npm install @nestjs/microservices
+```text
+Send email
+Generate PDF
+Process images
+Process payments
+Send notifications
 ```
 
-```typescript
-// src/main.ts (microservice entry point)
-import { NestFactory } from '@nestjs/core';
-import { Transport, MicroserviceOptions } from '@nestjs/microservices';
-import { AppModule } from './app.module';
+Typical architecture:
 
-async function bootstrap() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-    transport: Transport.TCP,
-    options: { host: '127.0.0.1', port: 4000 },
-  });
-  await app.listen();
+```text
+API
+ ↓
+Queue
+ ↓
+Worker
+ ↓
+Long-running job
+```
+
+Redis-backed queues are a common approach.
+
+The important idea is:
+
+> Do not make the HTTP request wait for expensive background work when it can safely be processed asynchronously.
+
+---
+
+# 41. WebSockets
+
+NestJS supports WebSocket gateways.
+
+Install:
+
+```bash
+npm install @nestjs/websockets @nestjs/platform-socket.io
+```
+
+Gateway:
+
+```ts
+import {
+  SubscribeMessage,
+  WebSocketGateway,
+} from '@nestjs/websockets';
+
+@WebSocketGateway()
+export class ChatGateway {
+  @SubscribeMessage('message')
+  handleMessage(
+    client: any,
+    payload: string,
+  ) {
+    return {
+      event: 'message',
+      data: payload,
+    };
+  }
 }
+```
+
+Use cases:
+
+```text
+Chat
+Live notifications
+Real-time dashboards
+Online presence
+Gaming
+Live tracking
+```
+
+---
+
+# 42. GraphQL
+
+NestJS supports GraphQL.
+
+Install:
+
+```bash
+npm install @nestjs/graphql @nestjs/apollo graphql
+```
+
+GraphQL separates the API layer from traditional REST routing.
+
+Example concept:
+
+```graphql
+query {
+  users {
+    id
+    name
+    email
+  }
+}
+```
+
+Mutation:
+
+```graphql
+mutation {
+  createUser(
+    name: "Dara"
+    email: "dara@example.com"
+  ) {
+    id
+    name
+  }
+}
+```
+
+GraphQL is especially useful when clients need flexible data selection.
+
+---
+
+# 43. Microservices
+
+NestJS supports microservices.
+
+Common transports include:
+
+```text
+TCP
+Redis
+MQTT
+NATS
+RabbitMQ
+Kafka
+gRPC
+```
+
+Typical architecture:
+
+```text
+                    ┌── User Service
+                    │
+API Gateway ────────┼── Order Service
+                    │
+                    ├── Payment Service
+                    │
+                    └── Notification Service
+```
+
+Instead of:
+
+```text
+Client
+  ↓
+One huge application
+```
+
+you can split functionality into independently deployable services.
+
+## Important
+
+Do not start with microservices just because they sound advanced.
+
+For many applications:
+
+```text
+Modular Monolith
+```
+
+is simpler and more appropriate.
+
+---
+
+# 44. Health Checks
+
+Production applications should expose health information.
+
+Typical endpoint:
+
+```http
+GET /health
+```
+
+Response:
+
+```json
+{
+  "status": "ok"
+}
+```
+
+Health checks can verify:
+
+```text
+Application
+Database
+Redis
+External services
+Disk
+Memory
+```
+
+A load balancer or container orchestrator can use health endpoints to determine whether an instance is healthy.
+
+---
+
+# 45. Graceful Shutdown
+
+Production applications should close resources cleanly.
+
+Example:
+
+```ts
+async function bootstrap() {
+  const app =
+    await NestFactory.create(AppModule);
+
+  app.enableShutdownHooks();
+
+  await app.listen(3000);
+}
+
 bootstrap();
 ```
 
-```typescript
-// Handling a message pattern
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+This is important for:
 
-@Controller()
-export class MathController {
-  @MessagePattern({ cmd: 'sum' })
-  sum(@Payload() numbers: number[]): number {
-    return numbers.reduce((a, b) => a + b, 0);
-  }
+```text
+Docker
+Kubernetes
+Cloud deployments
+Rolling deployments
+Database connections
+Queues
+WebSockets
+```
+
+---
+
+# 46. Production Structure
+
+A scalable project might look like:
+
+```text
+src/
+│
+├── main.ts
+├── app.module.ts
+│
+├── config/
+│   ├── configuration.ts
+│   └── validation.ts
+│
+├── common/
+│   ├── decorators/
+│   ├── filters/
+│   ├── guards/
+│   ├── interceptors/
+│   ├── middleware/
+│   ├── pipes/
+│   └── constants/
+│
+├── database/
+│   ├── database.module.ts
+│   └── migrations/
+│
+├── auth/
+│   ├── auth.module.ts
+│   ├── auth.controller.ts
+│   ├── auth.service.ts
+│   ├── dto/
+│   ├── guards/
+│   ├── strategies/
+│   └── decorators/
+│
+├── users/
+│   ├── users.module.ts
+│   ├── users.controller.ts
+│   ├── users.service.ts
+│   ├── dto/
+│   └── entities/
+│
+├── products/
+│   ├── products.module.ts
+│   ├── products.controller.ts
+│   ├── products.service.ts
+│   ├── dto/
+│   └── entities/
+│
+└── orders/
+    ├── orders.module.ts
+    ├── orders.controller.ts
+    ├── orders.service.ts
+    ├── dto/
+    └── entities/
+```
+
+---
+
+# 47. Clean Architecture
+
+For larger systems, separate responsibilities.
+
+Example:
+
+```text
+Presentation
+     ↓
+Application
+     ↓
+Domain
+     ↓
+Infrastructure
+```
+
+## Presentation
+
+Handles:
+
+```text
+HTTP
+Controllers
+DTOs
+Guards
+Serialization
+```
+
+## Application
+
+Handles:
+
+```text
+Use Cases
+Business workflows
+Application services
+```
+
+## Domain
+
+Contains:
+
+```text
+Entities
+Business rules
+Value objects
+Domain interfaces
+```
+
+## Infrastructure
+
+Contains:
+
+```text
+Database
+Repositories
+External APIs
+Message brokers
+Storage
+```
+
+Example:
+
+```text
+src/
+├── domain/
+│   └── users/
+│       ├── entities/
+│       └── repositories/
+│
+├── application/
+│   └── users/
+│       └── use-cases/
+│
+├── infrastructure/
+│   ├── database/
+│   └── external-services/
+│
+└── presentation/
+    └── http/
+        └── users/
+```
+
+---
+
+# 48. Best Practices
+
+## 48.1 Keep Controllers Thin
+
+Bad:
+
+```ts
+@Post()
+create(@Body() dto: CreateUserDto) {
+  // 200 lines of business logic
+}
+```
+
+Better:
+
+```ts
+@Post()
+create(@Body() dto: CreateUserDto) {
+  return this.usersService.create(dto);
 }
 ```
 
 ---
 
-## 22. Task Scheduling & Queues
+## 48.2 Put Business Logic in Services
 
-**English:** Use `@nestjs/schedule` for cron jobs and `@nestjs/bull` (with Redis) for background job queues.
-
-**ខ្មែរ:** ប្រើ `@nestjs/schedule` សម្រាប់ cron job និង `@nestjs/bull` (ជាមួយ Redis) សម្រាប់ job queue ក្នុងផ្ទៃខាងក្រោយ។
-
-```bash
-npm install @nestjs/schedule
+```text
+Controller
+   ↓
+Service
+   ↓
+Repository
 ```
 
-```typescript
-// src/tasks/tasks.service.ts
-import { Injectable, Logger } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
+---
 
-@Injectable()
-export class TasksService {
-  private readonly logger = new Logger(TasksService.name);
+## 48.3 Validate Input
 
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
-  handleDailyCleanup() {
-    this.logger.log('Running daily cleanup task...');
-  }
+Use:
+
+```ts
+ValidationPipe
+```
+
+and DTO validation decorators.
+
+---
+
+## 48.4 Never Store Plain Passwords
+
+Bad:
+
+```ts
+password: '123456'
+```
+
+Never store passwords directly.
+
+Use a password hashing algorithm such as bcrypt or Argon2.
+
+---
+
+## 48.5 Never Commit Secrets
+
+Never commit:
+
+```text
+.env
+private keys
+JWT secrets
+database passwords
+API keys
+cloud credentials
+```
+
+---
+
+## 48.6 Use Environment Variables
+
+Bad:
+
+```ts
+const password = 'my-secret-password';
+```
+
+Better:
+
+```ts
+const password =
+  process.env.DATABASE_PASSWORD;
+```
+
+Even better:
+
+```ts
+ConfigService
+```
+
+---
+
+## 48.7 Use Pagination
+
+Bad:
+
+```ts
+return repository.find();
+```
+
+for a table containing millions of records.
+
+Better:
+
+```text
+GET /users?page=1&limit=20
+```
+
+---
+
+## 48.8 Avoid Returning Sensitive Data
+
+Do not return:
+
+```json
+{
+  "id": 1,
+  "email": "user@example.com",
+  "passwordHash": "..."
 }
 ```
 
-```bash
-npm install @nestjs/bull bull
-```
+Return:
 
-```typescript
-// src/queue/email.processor.ts
-import { Process, Processor } from '@nestjs/bull';
-import { Job } from 'bull';
-
-@Processor('email')
-export class EmailProcessor {
-  @Process('send-welcome')
-  async handleSendWelcome(job: Job<{ email: string }>) {
-    console.log(`Sending welcome email to ${job.data.email}`);
-  }
+```json
+{
+  "id": 1,
+  "email": "user@example.com"
 }
 ```
 
 ---
 
-## 23. Deployment (Docker)
+## 48.9 Use HTTP Status Codes Correctly
 
-**English:** A production-ready Dockerfile using multi-stage builds:
+Common codes:
 
-**ខ្មែរ:** Dockerfile សម្រាប់ production ដោយប្រើ multi-stage build៖
+```text
+200 OK
+201 Created
+204 No Content
 
-```dockerfile
-# Dockerfile
-FROM node:20-alpine AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+409 Conflict
+422 Unprocessable Entity
 
-FROM node:20-alpine AS production
-WORKDIR /app
-ENV NODE_ENV=production
-COPY package*.json ./
-RUN npm ci --omit=dev
-COPY --from=build /app/dist ./dist
-EXPOSE 3000
-CMD ["node", "dist/main"]
-```
-
-```yaml
-# docker-compose.yml
-version: '3.8'
-services:
-  api:
-    build: .
-    ports:
-      - '3000:3000'
-    environment:
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-    depends_on:
-      - db
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: nest_app
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
-volumes:
-  pgdata:
-```
-
-```bash
-docker compose up --build
+500 Internal Server Error
 ```
 
 ---
 
-## 24. Best Practices
+# 49. Common Mistakes
 
-**English:**
-- **Organize by feature module**, not by file type.
-- Keep controllers **thin** — put logic in services.
-- Always use **DTOs + ValidationPipe** for input validation.
-- Never expose raw entities directly — use response DTOs when needed.
-- Use **environment variables** for all secrets and config.
-- Wrap all async DB operations with proper error handling.
-- Write **unit tests** for services and **e2e tests** for endpoints.
-- Use `class-transformer`'s `@Exclude()` to hide sensitive fields (like `password`) from responses.
+## Mistake 1 — Huge Controllers
 
-**ខ្មែរ:**
-- **រៀបចំតាម feature module** មិនមែនតាមប្រភេទ file ទេ។
-- តម្កល់ controller ឲ្យ **ស្តើង** — ដាក់ logic ទៅក្នុង service វិញ។
-- ត្រូវប្រើ **DTO + ValidationPipe** ជានិច្ចសម្រាប់ validate input។
-- កុំបង្ហាញ entity ដើមដោយផ្ទាល់ — ប្រើ response DTO នៅពេលចាំបាច់។
-- ប្រើ **environment variable** សម្រាប់ secret និង config ទាំងអស់។
-- ត្រូវគ្រប់គ្រង error សម្រាប់ operation database async ទាំងអស់។
-- សរសេរ **unit test** សម្រាប់ service និង **e2e test** សម្រាប់ endpoint។
-- ប្រើ `@Exclude()` ពី `class-transformer` ដើម្បីលាក់ field រសើប (ដូចជា `password`) ពី response។
+Bad:
 
-```typescript
-// Example: hiding password field automatically
-import { Exclude } from 'class-transformer';
+```text
+Controller
+ ├── validation
+ ├── database
+ ├── business logic
+ ├── email
+ ├── payment
+ └── logging
+```
 
-export class User {
+Better:
+
+```text
+Controller
+   ↓
+Service
+   ↓
+Repository
+```
+
+---
+
+## Mistake 2 — No DTO Validation
+
+Bad:
+
+```ts
+@Post()
+create(@Body() body: any) {
+  return body;
+}
+```
+
+Better:
+
+```ts
+@Post()
+create(
+  @Body() dto: CreateUserDto,
+) {
+  return this.service.create(dto);
+}
+```
+
+---
+
+## Mistake 3 — `any` Everywhere
+
+Avoid:
+
+```ts
+const user: any = ...
+```
+
+Prefer:
+
+```ts
+interface User {
   id: number;
   name: string;
-  email: string;
-
-  @Exclude()
-  password: string;
 }
 ```
+
+or domain/entity types where appropriate.
 
 ---
 
-## 25. Full Example: Task Manager API
+## Mistake 4 — Database Logic in Controllers
 
-**English:** A minimal but complete feature module putting everything together — module, controller, service, DTOs, entity, and guard.
+Bad:
 
-**ខ្មែរ:** feature module តូចមួយប៉ុន្តែពេញលេញ ដែលរួមបញ្ចូលអ្វីៗទាំងអស់ — module, controller, service, DTO, entity និង guard។
-
-```typescript
-// src/tasks/entities/task.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from 'typeorm';
-
-export enum TaskStatus {
-  TODO = 'todo',
-  IN_PROGRESS = 'in_progress',
-  DONE = 'done',
-}
-
-@Entity('tasks')
-export class Task {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  title: string;
-
-  @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.TODO })
-  status: TaskStatus;
-
-  @Column()
-  ownerId: number;
-
-  @CreateDateColumn()
-  createdAt: Date;
-}
-```
-
-```typescript
-// src/tasks/dto/create-task.dto.ts
-import { IsString, MinLength, IsEnum, IsOptional } from 'class-validator';
-import { ApiProperty } from '@nestjs/swagger';
-import { TaskStatus } from '../entities/task.entity';
-
-export class CreateTaskDto {
-  @ApiProperty({ example: 'Finish NestJS guide' })
-  @IsString()
-  @MinLength(3)
-  title: string;
-
-  @ApiProperty({ enum: TaskStatus, required: false })
-  @IsOptional()
-  @IsEnum(TaskStatus)
-  status?: TaskStatus;
-}
-```
-
-```typescript
-// src/tasks/tasks.service.ts
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Task } from './entities/task.entity';
-import { CreateTaskDto } from './dto/create-task.dto';
-
-@Injectable()
-export class TasksService {
-  constructor(
-    @InjectRepository(Task) private taskRepo: Repository<Task>,
-  ) {}
-
-  findAllForUser(ownerId: number): Promise<Task[]> {
-    return this.taskRepo.find({ where: { ownerId } });
-  }
-
-  async findOne(id: number, ownerId: number): Promise<Task> {
-    const task = await this.taskRepo.findOneBy({ id });
-    if (!task) throw new NotFoundException(`Task ${id} not found`);
-    if (task.ownerId !== ownerId) throw new ForbiddenException('Access denied');
-    return task;
-  }
-
-  create(dto: CreateTaskDto, ownerId: number): Promise<Task> {
-    const task = this.taskRepo.create({ ...dto, ownerId });
-    return this.taskRepo.save(task);
-  }
-
-  async remove(id: number, ownerId: number): Promise<void> {
-    await this.findOne(id, ownerId); // ensures ownership + existence
-    await this.taskRepo.delete(id);
-  }
-}
-```
-
-```typescript
-// src/tasks/tasks.controller.ts
-import {
-  Controller, Get, Post, Delete, Body, Param, ParseIntPipe, UseGuards,
-} from '@nestjs/common';
-import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
-import { TasksService } from './tasks.service';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { CurrentUser } from '../common/decorators/current-user.decorator';
-
-@ApiTags('tasks')
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
-@Controller('tasks')
-export class TasksController {
-  constructor(private tasksService: TasksService) {}
-
+```ts
+@Controller('users')
+export class UsersController {
   @Get()
-  findAll(@CurrentUser() user: { userId: number }) {
-    return this.tasksService.findAllForUser(user.userId);
-  }
-
-  @Get(':id')
-  findOne(
-    @Param('id', ParseIntPipe) id: number,
-    @CurrentUser() user: { userId: number },
-  ) {
-    return this.tasksService.findOne(id, user.userId);
-  }
-
-  @Post()
-  create(@Body() dto: CreateTaskDto, @CurrentUser() user: { userId: number }) {
-    return this.tasksService.create(dto, user.userId);
-  }
-
-  @Delete(':id')
-  remove(
-    @Param('id', ParseIntPipe) id: number,
-    @CurrentUser() user: { userId: number },
-  ) {
-    return this.tasksService.remove(id, user.userId);
+  async users() {
+    return database.query(
+      'SELECT * FROM users',
+    );
   }
 }
 ```
 
-```typescript
-// src/tasks/tasks.module.ts
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Task } from './entities/task.entity';
-import { TasksController } from './tasks.controller';
-import { TasksService } from './tasks.service';
+Better:
 
-@Module({
-  imports: [TypeOrmModule.forFeature([Task])],
-  controllers: [TasksController],
-  providers: [TasksService],
-})
-export class TasksModule {}
+```text
+Controller
+   ↓
+Service
+   ↓
+Repository
+   ↓
+Database
 ```
 
-**English:** Register `TasksModule` and `AuthModule` in `app.module.ts`, run `npm run start:dev`, then visit `http://localhost:3000/api-docs` to test everything through Swagger UI.
+---
 
-**ខ្មែរ:** ចុះឈ្មោះ `TasksModule` និង `AuthModule` នៅក្នុង `app.module.ts` រត់ `npm run start:dev` រួចចូលទៅកាន់ `http://localhost:3000/api-docs` ដើម្បីសាកល្បងអ្វីៗទាំងអស់តាមរយៈ Swagger UI។
+## Mistake 5 — Hardcoded Secrets
+
+Never:
+
+```ts
+const JWT_SECRET =
+  'my-super-secret';
+```
+
+Use configuration.
 
 ---
 
-## 📖 References / ឯកសារយោង
+## Mistake 6 — Returning Database Entities Directly Everywhere
 
-- Official Docs: https://docs.nestjs.com
-- TypeORM Docs: https://typeorm.io
-- class-validator: https://github.com/typestack/class-validator
+For complex applications, consider dedicated response DTOs/serializers so your public API does not accidentally expose internal fields.
 
 ---
 
-## 📝 License
+# 50. Production Checklist
 
-MIT © Heng — Feel free to use this guide for learning and sharing with the Khmer developer community.
-MIT © Heng — សូមប្រើប្រាស់មគ្គុទ្ទេសក៍នេះដោយសេរីសម្រាប់ការសិក្សា និងចែករំលែកជាមួយសហគមន៍ developer ខ្មែរ។
+Before deploying a NestJS application:
+
+## Application
+
+* [ ] TypeScript strictness enabled where practical
+* [ ] Environment configuration
+* [ ] Validation enabled
+* [ ] Proper exception handling
+* [ ] Logging configured
+* [ ] Health endpoint
+* [ ] Graceful shutdown
+
+## Security
+
+* [ ] HTTPS
+* [ ] CORS configured
+* [ ] Helmet
+* [ ] Rate limiting
+* [ ] Strong authentication
+* [ ] Authorization
+* [ ] Password hashing
+* [ ] Secrets outside source code
+* [ ] Input validation
+* [ ] File upload restrictions
+
+## Database
+
+* [ ] Migrations
+* [ ] Indexes
+* [ ] Transactions where needed
+* [ ] Connection pooling
+* [ ] Backups
+* [ ] No development `synchronize: true` in production
+
+## API
+
+* [ ] Swagger/OpenAPI
+* [ ] API versioning where required
+* [ ] Pagination
+* [ ] Consistent error responses
+* [ ] Proper HTTP status codes
+
+## Testing
+
+* [ ] Unit tests
+* [ ] Integration tests
+* [ ] E2E tests
+* [ ] Authentication tests
+* [ ] Authorization tests
+* [ ] Validation tests
+
+## Deployment
+
+* [ ] Production build
+* [ ] Environment variables
+* [ ] Docker if appropriate
+* [ ] Health checks
+* [ ] Logging/monitoring
+* [ ] Database migration strategy
+* [ ] CI/CD
+
+---
+
+# 🧠 NestJS Request Lifecycle
+
+A useful mental model is:
+
+```text
+Incoming Request
+       │
+       ▼
+   Middleware
+       │
+       ▼
+     Guards
+       │
+       ▼
+    Interceptors
+       │
+       ▼
+      Pipes
+       │
+       ▼
+   Controller
+       │
+       ▼
+     Service
+       │
+       ▼
+ Repository / ORM
+       │
+       ▼
+    Database
+       │
+       ▼
+     Service
+       │
+       ▼
+   Controller
+       │
+       ▼
+    Interceptor
+       │
+       ▼
+ HTTP Response
+```
+
+Understanding this flow is one of the most important things when learning NestJS.
+
+---
+
+# 🧩 NestJS Core Concepts
+
+| Concept     | Responsibility                 |
+| ----------- | ------------------------------ |
+| Module      | Organize application features  |
+| Controller  | Receive HTTP requests          |
+| Provider    | Injectable dependency          |
+| Service     | Business logic                 |
+| DTO         | Define data shape              |
+| Pipe        | Validate/transform             |
+| Guard       | Allow/deny request             |
+| Interceptor | Wrap request/response          |
+| Middleware  | Execute before route handling  |
+| Filter      | Handle exceptions              |
+| Decorator   | Add metadata/reusable behavior |
+| Repository  | Data access                    |
+| Entity      | Database model                 |
+| Gateway     | WebSocket communication        |
+
+---
+
+# 🏗 Recommended Learning Path
+
+If you are a beginner, do NOT learn everything at once.
+
+Follow this order:
+
+```text
+1. JavaScript
+       ↓
+2. TypeScript
+       ↓
+3. Node.js
+       ↓
+4. HTTP / REST
+       ↓
+5. NestJS CLI
+       ↓
+6. Modules
+       ↓
+7. Controllers
+       ↓
+8. Providers / Services
+       ↓
+9. Dependency Injection
+       ↓
+10. DTO
+       ↓
+11. Validation
+       ↓
+12. Pipes
+       ↓
+13. Exception Handling
+       ↓
+14. Database
+       ↓
+15. CRUD
+       ↓
+16. Authentication
+       ↓
+17. Authorization
+       ↓
+18. Swagger
+       ↓
+19. Testing
+       ↓
+20. Caching
+       ↓
+21. Queues
+       ↓
+22. WebSockets
+       ↓
+23. GraphQL
+       ↓
+24. Microservices
+       ↓
+25. Production / DevOps
+```
+
+---
+
+# 🚀 Recommended Real-World Project
+
+After learning the fundamentals, build:
+
+## E-Commerce REST API
+
+Features:
+
+```text
+Authentication
+├── Register
+├── Login
+├── JWT
+├── Refresh Token
+└── Logout
+
+Users
+├── Profile
+├── Roles
+└── Permissions
+
+Products
+├── Create
+├── Read
+├── Update
+├── Delete
+├── Search
+├── Filtering
+└── Pagination
+
+Categories
+├── Create
+├── Read
+├── Update
+└── Delete
+
+Cart
+├── Add Product
+├── Remove Product
+└── Update Quantity
+
+Orders
+├── Create Order
+├── Order Items
+├── Order Status
+└── Order History
+
+Payments
+├── Payment
+├── Payment Status
+└── Webhooks
+
+Admin
+├── Dashboard
+├── Users
+├── Products
+├── Orders
+└── Reports
+
+Infrastructure
+├── PostgreSQL
+├── Redis
+├── Queue
+├── Docker
+└── CI/CD
+```
+
+---
+
+# 📦 Example Final Architecture
+
+```text
+Client
+  │
+  ▼
+Load Balancer
+  │
+  ▼
+NestJS API
+  │
+  ├── Auth Module
+  │
+  ├── Users Module
+  │
+  ├── Products Module
+  │
+  ├── Orders Module
+  │
+  ├── Payments Module
+  │
+  └── Notifications Module
+  │
+  ├──────────────┐
+  ▼              ▼
+PostgreSQL      Redis
+                   │
+                   ▼
+                 Queue
+                   │
+                   ▼
+                Workers
+```
+
+---
+
+# 🛠 Useful Nest CLI Commands
+
+Create application:
+
+```bash
+nest new project-name
+```
+
+Generate module:
+
+```bash
+nest g module users
+```
+
+Generate controller:
+
+```bash
+nest g controller users
+```
+
+Generate service:
+
+```bash
+nest g service users
+```
+
+Generate guard:
+
+```bash
+nest g guard auth
+```
+
+Generate interceptor:
+
+```bash
+nest g interceptor logging
+```
+
+Generate pipe:
+
+```bash
+nest g pipe validation
+```
+
+Generate middleware:
+
+```bash
+nest g middleware logger
+```
+
+Generate resource:
+
+```bash
+nest g resource users
+```
+
+Build:
+
+```bash
+npm run build
+```
+
+Run development:
+
+```bash
+npm run start:dev
+```
+
+Run production:
+
+```bash
+npm run start:prod
+```
+
+Run tests:
+
+```bash
+npm test
+```
+
+Run E2E tests:
+
+```bash
+npm run test:e2e
+```
+
+---
+
+# 📜 Example `package.json` Scripts
+
+A typical project contains scripts similar to:
+
+```json
+{
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  }
+}
+```
+
+Your exact generated scripts can differ depending on the NestJS CLI version and project setup.
+
+---
+
+# 🔐 Example Production `main.ts`
+
+A more realistic production bootstrap:
+
+```ts
+import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import helmet from 'helmet';
+
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app =
+    await NestFactory.create(AppModule);
+
+  // Security headers
+  app.use(helmet());
+
+  // CORS
+  app.enableCors({
+    origin: [
+      'http://localhost:3001',
+    ],
+    credentials: true,
+  });
+
+  // Global validation
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
+
+  // API versioning
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
+
+  // Graceful shutdown
+  app.enableShutdownHooks();
+
+  // API prefix
+  app.setGlobalPrefix('api');
+
+  const port =
+    process.env.PORT ?? 3000;
+
+  await app.listen(port);
+}
+
+bootstrap();
+```
+
+API:
+
+```text
+GET /api/v1/users
+```
+
+---
+
+# 🎯 Final Advice
+
+## Beginner
+
+Focus on:
+
+```text
+TypeScript
+↓
+Nest CLI
+↓
+Module
+↓
+Controller
+↓
+Service
+↓
+Dependency Injection
+↓
+DTO
+↓
+Validation
+↓
+CRUD
+```
+
+## Intermediate
+
+Learn:
+
+```text
+PostgreSQL
+↓
+ORM
+↓
+Authentication
+↓
+JWT
+↓
+Authorization
+↓
+Swagger
+↓
+Testing
+↓
+Error Handling
+```
+
+## Advanced
+
+Learn:
+
+```text
+Redis
+↓
+Caching
+↓
+Queues
+↓
+Events
+↓
+WebSockets
+↓
+GraphQL
+↓
+Microservices
+↓
+Observability
+↓
+Docker
+↓
+CI/CD
+↓
+Cloud Deployment
+```
+
+## Professional
+
+Think about:
+
+```text
+Architecture
+Security
+Performance
+Scalability
+Maintainability
+Testing
+Observability
+Database design
+Failure handling
+Deployment
+```
+
+---
+
+# 📚 Official NestJS Documentation
+
+The official NestJS documentation covers the core architecture, fundamentals, database integration, authentication, security, GraphQL, WebSockets, microservices, OpenAPI, testing, queues, caching, observability, and more.
+
+Use the official documentation as the final reference when package APIs change.
+
+---
+
+# ⭐ Summary
+
+NestJS is easiest to understand when you think in layers:
+
+```text
+                 NestJS
+                    │
+       ┌────────────┴────────────┐
+       │                         │
+   Presentation              Business
+       │                         │
+ Controller ──────────────── Service
+       │                         │
+     DTO                       Logic
+       │                         │
+     Guard                      │
+       │                         │
+     Pipe                       │
+       └────────────┬────────────┘
+                    │
+                Repository
+                    │
+                    ▼
+                Database
+```
+
+The most important rule is:
+
+> **Keep responsibilities separated.**
+
+Controllers handle requests.
+
+Services handle business logic.
+
+Repositories handle data access.
+
+DTOs define input/output contracts.
+
+Guards handle access control.
+
+Pipes validate and transform data.
+
+Interceptors handle cross-cutting request/response behavior.
+
+Modules organize features.
+
+This architecture is what allows a NestJS application to grow from a small API into a large production system.
